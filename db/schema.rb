@@ -11,13 +11,120 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113234100) do
+ActiveRecord::Schema.define(:version => 20130115195233) do
+
+  create_table "companies", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "environments", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "headers", :force => true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "orgs", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "query_params", :force => true do |t|
+    t.string   "key"
+    t.string   "value"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "regression_tests", :force => true do |t|
+    t.string   "name"
+    t.integer  "environment_id"
+    t.integer  "org_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "releases", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "result_types", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "servers", :force => true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "test_relationships", :force => true do |t|
+    t.integer  "regression_test_id"
+    t.integer  "test_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "test_results", :force => true do |t|
+    t.integer  "result_type_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "test_step_results", :force => true do |t|
+    t.integer  "result_type_id"
+    t.string   "response_code"
+    t.text     "response_headers"
+    t.text     "response_body"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "test_steps", :force => true do |t|
+    t.string   "name"
+    t.string   "resource"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tests", :force => true do |t|
+    t.string   "name"
+    t.string   "base_path"
+    t.string   "app_name"
+    t.string   "api_product"
+    t.string   "developer"
+    t.string   "api_name"
+    t.string   "auth_path"
+    t.string   "auth_field"
+    t.string   "bundle_name"
+    t.string   "bundle_path"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -32,5 +139,14 @@ ActiveRecord::Schema.define(:version => 20130113234100) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
+
+  create_table "validations", :force => true do |t|
+    t.string   "type"
+    t.string   "key"
+    t.string   "value"
+    t.text     "match_string"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
 end
