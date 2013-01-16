@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115195233) do
+ActiveRecord::Schema.define(:version => 20130115212151) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -79,11 +79,26 @@ ActiveRecord::Schema.define(:version => 20130115195233) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "test_cases", :force => true do |t|
+    t.string   "name"
+    t.string   "base_path"
+    t.string   "app_name"
+    t.string   "api_product"
+    t.string   "developer"
+    t.string   "api_name"
+    t.string   "auth_path"
+    t.string   "auth_field"
+    t.string   "bundle_name"
+    t.string   "bundle_path"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "test_relationships", :force => true do |t|
     t.integer  "regression_test_id"
-    t.integer  "test_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+    t.integer  "test_case_id"
   end
 
   create_table "test_results", :force => true do |t|
@@ -110,21 +125,6 @@ ActiveRecord::Schema.define(:version => 20130115195233) do
     t.string   "resource"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "tests", :force => true do |t|
-    t.string   "name"
-    t.string   "base_path"
-    t.string   "app_name"
-    t.string   "api_product"
-    t.string   "developer"
-    t.string   "api_name"
-    t.string   "auth_path"
-    t.string   "auth_field"
-    t.string   "bundle_name"
-    t.string   "bundle_path"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|

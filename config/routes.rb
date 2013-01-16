@@ -1,5 +1,8 @@
 ApigeeApp::Application.routes.draw do
   
+  resources :templates
+
+
   get "users/new"
 
   root to: 'static_pages#home'
