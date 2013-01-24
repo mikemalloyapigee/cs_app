@@ -1,8 +1,4 @@
 ApigeeApp::Application.routes.draw do
-  
-  resources :templates
-
-
   get "users/new"
 
   root to: 'static_pages#home'
@@ -14,6 +10,14 @@ ApigeeApp::Application.routes.draw do
   resources :microposts
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :templates
+  resources :regression_tests
+  resources :test_cases do
+    member do
+      get 'edit_headers'
+    end
+  end
+  resources :headers, only: [:create, :edit, :destroy]
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'

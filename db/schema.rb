@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115212151) do
+ActiveRecord::Schema.define(:version => 20130122224346) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(:version => 20130115212151) do
   create_table "headers", :force => true do |t|
     t.string   "key"
     t.string   "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "test_case_id"
   end
 
   create_table "microposts", :force => true do |t|
@@ -79,19 +80,24 @@ ActiveRecord::Schema.define(:version => 20130115212151) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "templates", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "test_cases", :force => true do |t|
     t.string   "name"
-    t.string   "base_path"
-    t.string   "app_name"
-    t.string   "api_product"
-    t.string   "developer"
-    t.string   "api_name"
-    t.string   "auth_path"
-    t.string   "auth_field"
-    t.string   "bundle_name"
-    t.string   "bundle_path"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.boolean  "uses_oauth"
+    t.text     "auth_url"
+    t.text     "auth_headers"
+    t.text     "auth_body"
+    t.string   "request_type"
+    t.text     "request_url"
+    t.text     "request_body"
+    t.string   "verification_signature"
   end
 
   create_table "test_relationships", :force => true do |t|
