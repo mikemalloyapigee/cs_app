@@ -1,10 +1,16 @@
-= simple_nested_form_for @test_case, :html => { class: 'form-horizontal' } do |f|
+
+= simple_form_for @test_case, :html => { class: 'form-horizontal' } do |f|
   = f.input :name, input_html: { style: 'width: 250px'}
   = f.input :uses_oauth, :label => "Uses OAuth"
   = f.input :auth_url, input_html: { style: 'height: 40px; width: 400px'}
-  = f.fields_for :headers
-  %p.center
-    = f.link_to_add "Add a header", :headers
+  = f.input :auth_headers, input_html: { style: 'height: 40px; width: 400px'}
+  #header_table.center
+    %table.table.table-striped
+      %thead
+        %tr
+          %th
+            Authorization Headers
+      %tbody
   = f.input :auth_body, input_html: { style: 'height: 40px; width: 400px'}
   = f.input :request_type, collection: ["GET", "POST"], input_html: { style: 'height: 40px; width: 100px'}, default: "GET"
   = f.input :request_url, input_html: { style: 'height: 40px; width: 400px'}
