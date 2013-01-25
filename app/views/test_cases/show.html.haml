@@ -27,8 +27,7 @@
         - headers = parse_headers(@test_case.auth_headers)
         - headers.each do |h|
           %p
-            = h[:name] + ": " + h[:value]
-        = link_to "Edit headers", edit_headers_test_case_path(@test_case)    
+            = h[:name] + ": " + h[:value]   
   %dl.dl-horizontal 
     %dt
       %strong
@@ -53,6 +52,15 @@
         Request Body 
       %dd
         = @test_case.request_body
+  %dl.dl-horizontal 
+    %dt
+      %strong
+        Req Headers 
+      %dd
+        - headers = parse_headers(@test_case.request_headers)
+        - headers.each do |h|
+          %p
+            = h[:name] + ": " + h[:value]
   %dl.dl-horizontal 
     %dt
       %strong

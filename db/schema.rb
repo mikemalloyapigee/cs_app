@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122224346) do
+ActiveRecord::Schema.define(:version => 20130125000914) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20130122224346) do
     t.text     "request_url"
     t.text     "request_body"
     t.string   "verification_signature"
+    t.text     "request_headers"
   end
 
   create_table "test_relationships", :force => true do |t|
