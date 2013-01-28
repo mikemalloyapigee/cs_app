@@ -81,11 +81,21 @@ class TestCasesController < ApplicationController
     end
   end
   
-  def edit_headers
-    @testcase = TestCase.find_by_id(params[:id])
-    @headers = tc.headers
-    session[:tc_id] = tc.id
+  def run_test
+    @test_case = TestCase.find(params[:id])
+    @test_case_result = @test_case.test_case_results.create()
+    run_async_test(@test_case.id, @test_case_result.id, 2)
   end
+  
+  def run_async_test (tc_id, test_case_result_id, regression_test_id)
+    debugger
+    TestCaseWorker.perform_async(@test_case_result.id, @test_case.id, regression_test_id )
+  end
+  
+  
+  
+    
+  
     
     
 end

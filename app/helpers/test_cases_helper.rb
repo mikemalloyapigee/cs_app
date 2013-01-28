@@ -9,7 +9,4 @@ module TestCasesHelper
     return headers
   end
   
-  def current_test_case
-    return @test_case
-  end
 end

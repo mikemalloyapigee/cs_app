@@ -73,6 +73,9 @@
               test_cases_path, :class => 'btn' 
   = link_to t('.edit', :default => t("helpers.links.edit")),
               edit_test_case_path(@test_case), :class => 'btn'
+  = link_to t('.test', :default => t("helpers.links.test")),
+              run_test_test_case_path(@test_case), 
+              :class => 'btn'
   = link_to t('.destroy', :default => t("helpers.links.destroy")),
               test_case_path(@test_case),
               :method => 'delete',

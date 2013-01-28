@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130125000914) do
+ActiveRecord::Schema.define(:version => 20130127062415) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(:version => 20130125000914) do
     t.integer  "org_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+    t.string   "test_cases"
   end
 
   create_table "releases", :force => true do |t|
@@ -86,6 +87,21 @@ ActiveRecord::Schema.define(:version => 20130125000914) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "test_case_results", :force => true do |t|
+    t.integer  "test_case_id"
+    t.string   "verification_signature"
+    t.text     "headers"
+    t.text     "body"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
+    t.string   "status_code"
+    t.integer  "response_code"
+    t.string   "details"
+    t.boolean  "result"
+    t.text     "response_headers"
+    t.integer  "regression_test_id"
+  end
+
   create_table "test_cases", :force => true do |t|
     t.string   "name"
     t.datetime "created_at",             :null => false
@@ -99,6 +115,7 @@ ActiveRecord::Schema.define(:version => 20130125000914) do
     t.text     "request_body"
     t.string   "verification_signature"
     t.text     "request_headers"
+    t.integer  "company_id"
   end
 
   create_table "test_relationships", :force => true do |t|

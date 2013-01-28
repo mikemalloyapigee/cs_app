@@ -1,4 +1,7 @@
 ApigeeApp::Application.routes.draw do
+  resources :companies
+
+
   get "users/new"
 
   root to: 'static_pages#home'
@@ -12,9 +15,14 @@ ApigeeApp::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :templates
   resources :regression_tests
+  resources :test_case_results, only: [:show, :destroy, :edit, :create] do
+    member do
+      get 'display_response_body'
+    end
+  end
   resources :test_cases do
     member do
-      get 'edit_headers'
+      get 'run_test'
     end
   end
   resources :headers, only: [:create, :edit, :destroy]
@@ -22,6 +30,9 @@ ApigeeApp::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
+  
+  require 'sidekiq/web'
+  mount Sidekiq::Web, at: '/sidekiq'
 
 
   # The priority is based upon order of creation:

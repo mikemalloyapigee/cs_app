@@ -2,6 +2,9 @@
   %td
     = link_to test_case.id, test_case_path(test_case) 
   %td
+    - unless test_case.company.blank?
+      = test_case.company.name
+  %td
     = test_case.name 
   %td
     = link_to t('.edit', :default => t("helpers.links.edit")),
